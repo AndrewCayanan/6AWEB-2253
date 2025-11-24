@@ -1,0 +1,16 @@
+table {
+  margin: 2rem auto;
+  border-collapse: collapse;
+  width: 80%;
+  background: #f3f4f6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+td {
+  padding: 2rem;
+  text-align: center;
+}
+h2 {
+  color: #6366f1;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}

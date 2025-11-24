@@ -1,0 +1,19 @@
+<hr>
+<h2>{{message}}</h2>
+<p>{{title}}</p>
+<p>{{description}}</p>
+
+<img [src] = "imageUrl" [width]="w" [height]="h">
+
+<p [style.color] ="textColor">This text is color blue.</p>
+
+<p [class.highlighted]="isHighlighted">This text is highlighted!</p>
+
+<input [(ngModel)]="yourName" placeholder="Enter your name">
+<p>Hello, {{yourName}}!</p>
+
+<button (click)="increment()">Increment</button>
+<button (click)="decrement()">Decrement</button>
+<p>Count: {{count}}</p>
+
+<hr>

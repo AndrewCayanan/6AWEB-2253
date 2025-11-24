@@ -1,0 +1,66 @@
+<table>
+  <tr>
+    <td>
+      @if(isStaticNoteVisible===true) {
+        <h2> This is a static note with true value!</h2>
+      } @else {
+        <h2> This static note has false value </h2>
+      }
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      @if(isStaticNoteVisible===true) {
+        <p>This is a note!</p>
+      }
+    </td>
+    <td>
+      <button (click)="showNote()">Show Note</button>
+    </td>
+    <td>
+      <button (click)="hideNote()">Hide Note</button>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <button (click)="toggleNote()">{{isParagraphVisible ? 'Hide' : 'Show'}}</button>
+      @if(isParagraphVisible) {
+        <p>This is a toggleable paragraph!</p>
+      }
+  </tr>
+</table>
+
+<table>
+  <tr>
+    @if(monthNameStatic == 'Jan') {
+      <p>It's January!</p>
+    } @else if(monthNameStatic == 'Feb') {
+      <p>It's February!</p>
+    } @else if(monthNameStatic == 'Mar') {
+      <p>It's another month!</p>
+    }
+  </tr>
+</table>
+
+<table>
+  <tr>
+    @if(monthNameDynamic == 'Jan') {
+      <p>It's January!</p>
+    }
+    @else if(monthNameDynamic == 'Feb') {
+      <p>It's February!</p>
+    }
+    @else if(monthNameDynamic == 'Mar') {
+      <p>It's March!</p>
+    }
+    @else {
+      <p>WRONG INPUT!</p>
+    }
+
+  </tr>
+</table>
