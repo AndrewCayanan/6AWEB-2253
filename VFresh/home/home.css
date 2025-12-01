@@ -1,0 +1,61 @@
+/* Home page container */
+.home-container {
+  max-width: 800px;
+  margin: 32px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.home-container h2 {
+  text-align: center;
+  color: #1976d2;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.note-section, .month-section {
+  margin-bottom: 28px;
+  padding: 18px 16px;
+  background: #f5faff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.07);
+}
+
+.note-section button {
+  margin: 0 8px 8px 0;
+  padding: 8px 18px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.note-section button:hover {
+  background: #1565c0;
+}
+
+.note-section p, .note-section h3 {
+  margin: 12px 0;
+  color: #333;
+}
+
+.month-section p {
+  font-size: 1.1rem;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 12px 4px;
+  }
+  .note-section, .month-section {
+    padding: 10px 6px;
+  }
+}
