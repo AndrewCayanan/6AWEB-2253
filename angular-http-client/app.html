@@ -1,0 +1,51 @@
+<h2>List of Users</h2>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Website</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (user of httpusers; track user.id) {
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.website }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<h2>List of Comments</h2>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (comment of httpcomments.slice(0,5); track comment.id) {
+      <tr>
+        <td>{{ comment.id }}</td>
+        <td>{{ comment.username }}</td>
+        <td>{{ comment.email }}</td>
+        <td>{{ comment.body }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<router-outlet />
