@@ -1,0 +1,55 @@
+<h1>Welcome to the Community Help Desk</h1>
+<p>Your one-stop solution for all community support services.</p>
+
+<h2>
+  <i class="bi bi-gear"></i>
+  Services
+</h2>
+
+<hr>
+
+<input
+  type="text"
+  class="form-control mb-3"
+  placeholder="Search by title or body..."
+  (input)="search($event.target.value)"
+>
+
+<p><strong>Showing {{ filtered.length }} records</strong></p>
+
+<ul class="list-group mb-4">
+  <li class="list-group-item" *ngFor="let item of filtered">
+    <h6>{{ item.title | titlecase }}</h6>
+    <p>{{ item.body }}</p>
+  </li>
+</ul>
+
+<h3>Comments</h3>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (comment of paginatedComments; track comment.id) {
+      <tr>
+        <td>{{ comment.id }}</td>
+        <td>{{ comment.name }}</td>
+        <td>{{ comment.email }}</td>
+        <td>{{ comment.body }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between mt-3">
+  <button class="btn btn-secondary" (click)="prevPage()">Previous</button>
+  <span>Page {{ currentPage }}</span>
+  <button class="btn btn-secondary" (click)="nextPage()">Next</button>
+</div>
