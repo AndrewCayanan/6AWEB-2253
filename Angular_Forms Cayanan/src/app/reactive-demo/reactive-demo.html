@@ -1,0 +1,87 @@
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <h2 class="form-title">User Registration</h2>
+
+    <!-- Username -->
+    <div class="form-group">
+      <input type="text" formControlName="username" placeholder=" " />
+      <label>Username</label>
+      @if (isInvalid('username')) {
+        <small class="error">Username: 4-12 chars (letters/numbers/_)</small>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <input type="email" formControlName="email" placeholder=" " />
+      <label>Email</label>
+      @if (isInvalid('email')) {
+        <small class="error">Enter a valid email</small>
+      }
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <input type="password" formControlName="password" placeholder=" " />
+      <label>Password</label>
+      @if (isInvalid('password')) {
+        <small class="error">Password: 8+ chars, upper, lower, number</small>
+      }
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <select formControlName="role">
+        <option value="" disabled selected>Select Role</option>
+        @for (r of roles; track r) {
+          <option [value]="r">{{ r }}</option>
+        }
+      </select>
+      <label>Role</label>
+      @if (isInvalid('role')) {
+        <small class="error">Role is required</small>
+      }
+    </div>
+
+    <!-- Gender & Status side by side -->
+    <div class="form-row">
+
+      <!-- Gender -->
+      <div class="form-group-radio">
+        <label>Gender</label>
+        <div class="radio-options">
+          <label><input type="radio" formControlName="gender" value="Male" /> Male</label>
+          <label><input type="radio" formControlName="gender" value="Female" /> Female</label>
+          <label><input type="radio" formControlName="gender" value="Other" /> Other</label>
+        </div>
+        @if (isInvalid('gender')) {
+          <small class="error">Select a gender</small>
+        }
+      </div>
+
+      <!-- Status -->
+      <div class="form-group">
+        <select formControlName="status">
+          <option value="" disabled selected>Select Status</option>
+          <option value="Permanent">Permanent</option>
+          <option value="Probationary">Probationary</option>
+        </select>
+        <label>Status</label>
+        @if (isInvalid('status')) {
+          <small class="error">Select a status</small>
+        }
+      </div>
+
+    </div>
+
+    <!-- Comments -->
+    <div class="form-group">
+      <textarea formControlName="comments" rows="4" placeholder=" "></textarea>
+      <label>Comments</label>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

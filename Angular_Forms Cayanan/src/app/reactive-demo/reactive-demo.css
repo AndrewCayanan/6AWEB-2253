@@ -1,0 +1,136 @@
+.card {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 35px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Floating label form group */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+  background: transparent;
+  transition: 0.3s ease;
+}
+
+.form-group label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #888;
+  font-size: 0.95em;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:not([value=""]) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8em;
+  background: #fff;
+  padding: 0 5px;
+  color: #4CAF50;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 6px rgba(76,175,80,0.3);
+}
+
+/* Form row for Gender + Status */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group,
+.form-row .form-group-radio {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Radio buttons */
+.form-group-radio {
+  margin-bottom: 15px;
+}
+
+.radio-options {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.radio-options label {
+  font-size: 0.95em;
+  color: #555;
+}
+
+.radio-options input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Comments */
+textarea.form-group {
+  resize: vertical;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  border: none;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Error messages */
+.error {
+  color: #e74c3c;
+  font-size: 0.85em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
