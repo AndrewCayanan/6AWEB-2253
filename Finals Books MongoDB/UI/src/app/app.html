@@ -1,0 +1,187 @@
+<!-- ╔══════════════════════════════════════════════╗ -->
+<!-- ║         BOOKS APPLICATION — app.html        ║ -->
+<!-- ╚══════════════════════════════════════════════╝ -->
+
+<div class="app-wrapper">
+
+  <!-- ░░ HEADER ░░ -->
+  <header class="site-header">
+    <div class="header-spine">Personal Library</div>
+    <div class="header-body">
+      <p class="header-kicker">Your Collection · Vol. I</p>
+      <h1 class="header-title">The <em>Book</em><br>Catalogue</h1>
+      <div class="header-rule">
+        <span>Curated reads · Personal archive</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ░░ MAIN CONTENT ░░ -->
+  <main class="main-grid">
+
+    <!-- ── BOOK LIST ── -->
+    <section class="list-section">
+
+      <div class="section-label">
+        Collection
+        <span class="badge">{{ books.length }}</span>
+      </div>
+
+      <!-- Book Items -->
+      <ul class="book-list">
+        @for (book of books; track book.id; let i = $index) {
+          <li class="book-item" [class.is-editing]="editingBook?.id === book.id" [style.animation-delay]="i * 40 + 'ms'">
+            <span class="book-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+
+            <div class="book-body">
+              <div class="book-meta-row">
+                <span class="book-genre">{{ book.genre || 'Uncategorised' }}</span>
+                <span class="book-author">{{ book.author || '—' }}</span>
+              </div>
+              <h2 class="book-title">{{ book.title }}</h2>
+              <p class="book-desc">{{ book.desc }}</p>
+              <span class="book-price">$ {{ book.price | number:'1.2-2' }}</span>
+            </div>
+
+            <div class="book-actions">
+              <button class="btn-edit" (click)="startEdit(book)" aria-label="Edit book" title="Edit">✎</button>
+              <button class="btn-delete" (click)="deleteBook(book.id)" aria-label="Remove book" title="Delete">✕</button>
+            </div>
+          </li>
+        } @empty {
+          <li class="empty-state">
+            <div class="empty-ornament">✦</div>
+            <p class="empty-text">No books yet in your collection</p>
+            <p class="empty-sub">Add your first title to begin</p>
+          </li>
+        }
+      </ul>
+
+    </section>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="form-sidebar">
+
+      <!-- ═══ ADD MODE ═══ -->
+      @if (!editingBook) {
+        <div class="sidebar-mode-indicator add-mode">
+          <span class="mode-dot"></span> ADD MODE
+        </div>
+        <h2 class="form-title">Add a Title</h2>
+        <p class="form-subtitle">New Entry</p>
+
+        <div class="field">
+          <label for="newBook">Book Title</label>
+          <input id="newBook" type="text" [(ngModel)]="newBook"
+            placeholder="e.g. The Great Gatsby" (keydown.enter)="addBook()" />
+        </div>
+
+        <div class="field">
+          <label for="newAuthor">Author</label>
+          <input id="newAuthor" type="text" [(ngModel)]="newAuthor"
+            placeholder="e.g. F. Scott Fitzgerald" />
+        </div>
+
+        <div class="field">
+          <label for="newGenre">Genre</label>
+          <input id="newGenre" type="text" [(ngModel)]="newGenre"
+            placeholder="e.g. Fiction, Science, History" />
+        </div>
+
+        <div class="field">
+          <label for="newDesc">Description</label>
+          <textarea id="newDesc" [(ngModel)]="newDesc"
+            placeholder="A brief note about the book…" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="newPrice">Price</label>
+          <div class="price-wrap">
+            <span class="price-prefix">$</span>
+            <input id="newPrice" type="number" [(ngModel)]="newPrice"
+              placeholder="0.00" min="0" step="0.01" (keydown.enter)="addBook()" />
+          </div>
+        </div>
+
+        <button class="btn-add" (click)="addBook()">
+          <span>+ Add to Collection</span>
+        </button>
+      }
+
+      <!-- ═══ EDIT MODE ═══ -->
+      @if (editingBook) {
+        <div class="sidebar-mode-indicator edit-mode">
+          <span class="mode-dot"></span> EDIT MODE
+        </div>
+        <h2 class="form-title">Edit Title</h2>
+        <p class="form-subtitle">Editing — #{{ editingBook.id }}</p>
+
+        <div class="field">
+          <label for="editTitle">Book Title</label>
+          <input id="editTitle" type="text" [(ngModel)]="editBook"
+            placeholder="Book title" (keydown.enter)="saveEdit()" />
+        </div>
+
+        <div class="field">
+          <label for="editAuthor">Author</label>
+          <input id="editAuthor" type="text" [(ngModel)]="editAuthor"
+            placeholder="Author name" />
+        </div>
+
+        <div class="field">
+          <label for="editGenre">Genre</label>
+          <input id="editGenre" type="text" [(ngModel)]="editGenre"
+            placeholder="Genre" />
+        </div>
+
+        <div class="field">
+          <label for="editDesc">Description</label>
+          <textarea id="editDesc" [(ngModel)]="editDesc"
+            placeholder="Description…" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="editPrice">Price</label>
+          <div class="price-wrap">
+            <span class="price-prefix">$</span>
+            <input id="editPrice" type="number" [(ngModel)]="editPrice"
+              placeholder="0.00" min="0" step="0.01" (keydown.enter)="saveEdit()" />
+          </div>
+        </div>
+
+        <div class="edit-actions">
+          <button class="btn-save" (click)="saveEdit()">
+            <span>✔ Save Changes</span>
+          </button>
+          <button class="btn-cancel" (click)="cancelEdit()">
+            <span>✕ Cancel</span>
+          </button>
+        </div>
+      }
+
+      <!-- Divider -->
+      <div class="divider"><span>✦</span></div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-value">{{ books.length }}</span>
+          <span class="stat-label">Total Books</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">${{ totalValue | number:'1.0-2' }}</span>
+          <span class="stat-label">Total Value</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- ░░ ROUTER OUTLET ░░ -->
+  <router-outlet />
+
+</div>
+
+<!-- ░░ TOAST NOTIFICATION ░░ -->
+<div class="toast" [class.show]="toastVisible">{{ toastMessage }}</div>
